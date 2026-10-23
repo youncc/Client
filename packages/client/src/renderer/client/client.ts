@@ -21,6 +21,7 @@ import '@static/css/overrides.css';
 import '@static/css/item-tooltip.css';
 
 import './helpers/titlebarHelpers.js';
+import { setupTapDropButton } from './helpers/tapDropButton';
 
 // Note: With the page running on https://memoriesofmagic.com, relative paths like
 // /assets/..., /data/..., /maps/..., /ui/..., /api/... resolve naturally to
@@ -576,6 +577,7 @@ const setupGameResizeObserver = () => {
     observer.observe(document.body, { childList: true, subtree: true });
 };
 setupGameResizeObserver();
+setupTapDropButton();
 
 // Lightweight on-screen toast for dev-login status (no copy-paste UI needed).
 function devToast(msg: string, kind: 'info' | 'ok' | 'err' = 'info') {
