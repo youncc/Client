@@ -133,3 +133,111 @@ html.eq-fixed-client-size #game-frame {
     margin-top: 14px !important;
     cursor: pointer !important;
 }
+
+/* The classic minimap frame is a decorative wyrm/brass image. The map canvas,
+   compass, orbs, and world-map button are positioned on their own, and the
+   image does not receive clicks. */
+#game-frame .eq-minimap-shell > .eq-minimap-frame-art {
+    display: none !important;
+}
+
+/* The game draws a brass ring on the map circle. Use a plain dark edge so the
+   circle still separates from the world. */
+#game-frame .eq-minimap-shell > canvas.eq-minimap {
+    border: 2px solid rgba(0, 0, 0, 0.72) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16) !important;
+}
+
+#game-frame .eq-minimap-shell > .eq-world-map-open-button {
+    border-color: rgba(0, 0, 0, 0.72) !important;
+    color: rgba(232, 228, 216, 0.92) !important;
+}
+
+/* Desktop: anchor the circle itself to the corner instead of the removed art.
+   Keep the game's map/orb sizes, including its UI-scale and short-window limits.
+   The mobile map sheet retains its own layout. */
+@media (min-width: 901px), (min-width: 800px) and (min-height: 600px) and (pointer: fine) {
+    #game-frame .eq-minimap-shell {
+        --ck-minimap-diameter: calc(var(--eq-minimap-display-size) * 0.8625 + 4px);
+        --ck-minimap-rail: calc(var(--eq-minimap-art-size) * 0.18 + 8px);
+        width: calc(var(--ck-minimap-diameter) + var(--ck-minimap-rail) + 8px) !important;
+        height: calc(var(--ck-minimap-diameter) * 1.04 + var(--eq-minimap-art-size) * 0.0681 + 28px) !important;
+        left: 0 !important;
+    }
+
+    html.eq-layout-resizable #game-frame .eq-minimap-shell {
+        margin-top: calc(0px - var(--eq-float-inset)) !important;
+        margin-right: calc(0px - var(--eq-float-inset)) !important;
+        margin-bottom: 0 !important;
+    }
+
+    #game-frame .eq-minimap-shell > canvas.eq-minimap {
+        left: auto !important;
+        right: 8px !important;
+        top: 8px !important;
+        transform: none !important;
+    }
+
+    #game-frame .eq-minimap-compass-row {
+        left: calc(var(--ck-minimap-rail) - var(--ck-minimap-diameter) * 0.13) !important;
+        top: 8px !important;
+        transform: translateX(-50%) !important;
+    }
+
+    #game-frame .eq-minimap-orbs {
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    #game-frame .eq-minimap-orbs > [data-orb=hp] {
+        left: calc(var(--ck-minimap-rail) - var(--ck-minimap-diameter) * 0.18) !important;
+        top: calc(8px + var(--ck-minimap-diameter) * 0.47) !important;
+    }
+
+    #game-frame .eq-minimap-orbs > [data-orb=goodmagic] {
+        left: calc(var(--ck-minimap-rail) - var(--ck-minimap-diameter) * 0.14) !important;
+        top: calc(8px + var(--ck-minimap-diameter) * 0.77) !important;
+    }
+
+    #game-frame .eq-minimap-orbs > .eq-run-control {
+        left: calc(var(--ck-minimap-rail) + var(--ck-minimap-diameter) * 0.06) !important;
+        top: calc(8px + var(--ck-minimap-diameter) * 1.01) !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    #game-frame .eq-minimap-shell > .eq-world-map-open-button {
+        left: auto !important;
+        right: 8px !important;
+        top: calc(var(--ck-minimap-diameter) + 16px) !important;
+        bottom: auto !important;
+        transform: none !important;
+    }
+
+    /* Keep the wilderness label below Run when it becomes visible. */
+    #game-frame .eq-minimap-shell:has(#wilderness-indicator:not([hidden])) {
+        margin-bottom: 56px !important;
+    }
+}
+
+/* The side panel and chat box share one decorative brass frame: a corner
+   border-image on ::after and stacked gold inset rings on ::before. The
+   transparent border only exists to make room for that art. Dialogs and
+   context menus use the same frame and are left alone. */
+#game-frame #side-panel#side-panel,
+#game-frame #ui-chat-area#ui-chat-area {
+    --eq-frame-border: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.72) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+    border-radius: 2px !important;
+}
+
+#game-frame #side-panel#side-panel::before,
+#game-frame #side-panel#side-panel::after,
+#game-frame #ui-chat-area#ui-chat-area::before,
+#game-frame #ui-chat-area#ui-chat-area::after {
+    content: none !important;
+    display: none !important;
+    border-image: none !important;
+    box-shadow: none !important;
+}
