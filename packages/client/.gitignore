@@ -7,6 +7,7 @@ package-lock.json
 
 # Don't track local test plugins or runtime data in the repository (keep directory tracked with .gitkeep & README.md)
 src/renderer/client/plugins/*
+!src/renderer/client/plugins/CameraPlugin.ts
 !src/renderer/client/plugins/.gitkeep
 !src/renderer/client/plugins/README.md
 !src/renderer/client/plugins/LootTrackerPlugin.ts

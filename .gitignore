@@ -89,6 +89,7 @@ packages/client/static/core.js
 packages/client/src/renderer/client/plugins/*
 !packages/client/src/renderer/client/plugins/.gitkeep
 !packages/client/src/renderer/client/plugins/README.md
+!packages/client/src/renderer/client/plugins/CameraPlugin.ts
 !packages/client/src/renderer/client/plugins/data/
 packages/client/src/renderer/client/plugins/data/*
 !packages/client/src/renderer/client/plugins/data/.gitkeep
